@@ -1,6 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import {Form } from './'
+
+
+//icons
+import { IoClose } from "react-icons/io5";
 
 
 
@@ -28,9 +33,19 @@ const NAVIGATIONS =  [
   }
 ]
 
+
 const Navbar = () => {
 
   const [isOpen, setIsOpen] = useState(false)
+  const [isHover, setIsHover] = useState(0)
+  const [isActive, setIsActive] = useState(0)
+
+
+  useEffect(() => {
+    if
+    setIsOpen(false)
+  }
+
 
 
   return (
@@ -44,17 +59,26 @@ const Navbar = () => {
           <span>Folio</span>
           </span>
         </button>
-        <ul>
+        <ul className='flex items-center gap-7 text-base font-semibold tracking-wide'>
           {NAVIGATIONS.map((nav, index) => (
             <li 
-            onClick={()=>{setIsOpen(false)}}
+            onMouseEnter={()=>setIsHover(index)}
+            onMouseLeave={()=>setIsHover(null)}
+            onClick={()=>{setIsOpen(false);setIsActive(index)}}
             key={index} className='inline-block'>
-              <NavLink to={nav.link} className='p-4 hover:text-'>{nav.name}</NavLink>
+              <NavLink 
+              className={`${isActive == index ? 'text-blue-500' : 'text-white'} `}
+              to={nav.link} >{nav.name}
+              <motion.h2
+              initial={{width: 0}}
+              animate={{width: isHover == index || isActive == index ? '100%' : 0}}
+              className='h-[0.05rem] rounded-md bg-white'></motion.h2>
+              </NavLink>
             </li>
           ))
           }
         </ul>
-          <button onClick={(e)=>{setIsOpen(!isOpen);e.stopPropagation()}} className='cursor-pointer'>Contact us</button>
+          <button onClick={(e)=>{setIsOpen(!isOpen);e.stopPropagation();setIsActive(4);}} className={`cursor-pointer text-xl font-bold ${isActive == 4 ? 'text-blue-500' : 'text-white'}`}>Contact <span className='text-sm font-medium'>us</span></button>
       </div>
       <motion.div 
       onClick={()=>{setIsOpen(false)}}
@@ -67,9 +91,12 @@ const Navbar = () => {
         initial={{x: '100%'}}
         animate={{x: isOpen ? 0 : '100%'}}
         transition={{duration: 0.3}}
-        className='absolute w-[25rem] h-full bg-white right-0 top-0 p-4'>
-        
-
+        className='absolute w-[25rem] h-full text-black bg-white right-0 top-0 p-4'>
+          <div className='flex justify-between items-center w-full'>
+            <h1 className='text-xl font-semibold'>What can I help you with?</h1>
+            <IoClose className='text-2xl cursor-pointer' onClick={()=>setIsOpen(false)}/>
+          </div>
+          <Form close={setIsOpen}/>
         </motion.div>
       </motion.div>
     </nav>
