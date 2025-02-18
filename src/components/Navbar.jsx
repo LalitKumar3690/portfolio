@@ -41,10 +41,7 @@ const Navbar = () => {
   const [isActive, setIsActive] = useState(0)
 
 
-  useEffect(() => {
-    if
-    setIsOpen(false)
-  }
+
 
 
 
