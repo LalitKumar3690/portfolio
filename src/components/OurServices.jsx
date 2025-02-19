@@ -11,7 +11,7 @@ const services = [
 
 const OurServices = () => {
   return (
-    <div className="bg-black  py-12 px-4 md:px-8 lg:px-16 xl:px-32" id='about'>
+    <div className="bg-gradient-to-t to-black from-[#0a0215] py-12 px-4 md:px-8 lg:px-16 xl:px-32" id='about'>
       <div className="max-w-[85rem] flex flex-col  lg:flex-row gap-10 mx-auto">
         <div className='flex flex-col items-center md:text-left md:items-start justify-center md:justify-start text-center'>
           <div className="mb-8">
