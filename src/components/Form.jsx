@@ -21,7 +21,7 @@ const Form = ({close}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
-      <h1 className='text-2xl pl-4 mt-20'>Contact me</h1>
+      <h1 className='text-2xl text-white pl-4 mt-20'>Contact me</h1>
         <div className='flex flex-col items-center gap-7 mt-4 px-4'>
           <Input 
           type={"email"}

@@ -1,46 +1,84 @@
-import { Carousel } from "@material-tailwind/react";
- 
-function Slider() {
+// Hero.jsx
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import heroimg from '../assets/Hero/hero.png'
+const Slider = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    {
+      text: "Videographer's Portfolio",
+      description: "For Website and Video Editing",
+    },
+    {
+      text: "Second Slide Text",
+      description: "Second Slide Description",
+    },
+    {
+      text: "Third Slide Text",
+      description: "Third Slide Description",
+    },
+  ];
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, [slides.length]);
+
+  //Framer Motion Animation
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const slideVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
-    <div className="relative w-1/2  h-[30rem] mx-auto">
-    <Carousel
-      autoplay={true}
-      autoplayDelay={3000}
-      loop={true}
-      className="rounded-xl"
-      navigation={({ setActiveIndex, activeIndex, length }) => (
-        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-          {new Array(length).fill("").map((_, i) => (
-            <span
-              key={i}
-              className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                activeIndex === i ? "w-8 bg-white" : "w-4 bg-white/50"
-              }`}
-              onClick={() => setActiveIndex(i)}
-            />
-          ))}
-        </div>
-      )}
+    <div className="relative bg-cover bg-center h-[500px] md:h-[600px] lg:h-[700px] w-full"
+    id='home'
+      style={{ backgroundImage: `url(${heroimg})` }}>
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="container mx-auto relative h-full flex items-center justify-start">
+        <AnimatePresence>
+        <motion.div
+          ref={ref}
+          className="text-white flex h-full flex-col items-stretch justify-end py-20 gap-y-3 text-left pl-5 md:pl-10 lg:pl-20"
+          variants={slideVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <p className="uppercase text-sm md:text-md lg:text-lg font-semibold mb-2">{slides[currentSlide].description}</p>
+          <h1 className="text-4xl md:text-5xl lg:text-9xl font-bold mb-4" >{slides[currentSlide].text}</h1>
+         
+          <button className="btn bg-transparent hover:bg-primary text-white w-fit px-10 border-white hover:border-primary btn-primary">See More About Us</button>
+          <div className="mt-6 flex space-x-3">
+  {slides.map((_, index) => (
+    <div
+      key={index}
+      className={`w-6 h-6 flex items-center justify-center border-b-2 pb-1  cursor-pointer ${currentSlide === index ? '  text-white' : 'text-gray-500 '}`}
+      onClick={() => setCurrentSlide(index)}
     >
-      <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-        alt="image 1"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-        alt="image 2"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-        alt="image 3"
-        className="h-full w-full object-cover"
-      />
-    </Carousel>
+      {(index + 1).toString().padStart(2, '0')}
+    </div>
+  ))}
+</div>
+
+        </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
-}
-
+};
 
 export default Slider;

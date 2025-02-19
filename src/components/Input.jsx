@@ -11,7 +11,7 @@ const Input = ({ type, label,errors, ...props  }) => {
         animate={{ y: isOpen ? -10 : 10, x: isOpen ? 5 : 0 }}
         transition={{ duration: 0.2 }}
         htmlFor={label}
-        className={`absolute left-2 bg-white px-2 text-sm ${errors ? 'text-red-500' : 'text-gray-500'}`}
+        className={`absolute left-2 bg-[#0e141b] px-2 text-sm ${errors ? 'text-red-500' : 'text-gray-500'}`}
       >
         {label}
       </motion.label>

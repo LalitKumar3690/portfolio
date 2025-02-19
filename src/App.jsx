@@ -1,13 +1,13 @@
 import React from 'react'
-import {Navbar,Footer} from './components/'
+import {Navbar,Footer,Home} from './components/'
 import {Outlet} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 const App = () => {
   return (
-    <div className='w-full '>
+    <div className='w-full min-h-screen flex flex-col justify-between '>
       <ToastContainer />
       <Navbar />
-      <Outlet/>
+      <Home/>
       <Footer />
     </div>
   )
