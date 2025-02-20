@@ -1,12 +1,16 @@
 import React from 'react';
 import { FaCamera, FaCogs, FaFileVideo, FaVideo } from 'react-icons/fa';
+import { TfiAndroid } from "react-icons/tfi";
+import { FaAppStoreIos } from "react-icons/fa";
+import { MdWeb } from "react-icons/md";
+import { GrHostMaintenance } from "react-icons/gr";
 import { ArrowRight } from 'lucide-react';
 
 const services = [
-  { icon: <FaCogs className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Motion graphics" },
-  { icon: <FaFileVideo className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Scriptwriting and editing" },
-  { icon: <FaVideo className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Video distribution" },
-  { icon: <FaCamera className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Video hosting" }
+  { icon: <TfiAndroid className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Android Apps",des:"I create custom Android apps tailored to your business, delivering seamless functionality and an intuitive user experience to help you reach your goals." },
+  { icon: <FaAppStoreIos className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "IOS Apps", des:"I develop custom iOS apps that provide a smooth and engaging user experience, tailored to meet your business needs and drive success.", },
+  { icon: <MdWeb className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Websites", des:"I design and develop custom websites that are visually appealing, user-friendly, and optimized to meet your business objectives." },
+  { icon: <GrHostMaintenance className="text-blue-400 text-3xl transform duration-300 group-hover:-rotate-45" />, title: "Maintenance",des: "I offer reliable maintenance services to keep your website or app running smoothly, with regular updates, bug fixes, and performance optimizations." }
 ];
 
 const OurServices = () => {
@@ -22,8 +26,7 @@ const OurServices = () => {
 
           <div className="text-gray-300 text-lg leading-8 mb-8">
             <p>
-              If you hire a videographer of our team you will get a video professional to make a custom video
-              for your business and, once the project is over.
+            As a web developer, I build custom websites and applications that meet your business needs. I collaborate with professionals to ensure seamless integration of media, including custom videos, to enhance user experience.
             </p>
           </div>
 
@@ -44,8 +47,7 @@ const OurServices = () => {
               </div>
               <h4 className="text-xl text-white font-semibold mb-2">{service.title}</h4>
               <p className="text-gray-300 text-center md:text-left max-w-[90%] ">
-                Whether you're halfway through the editing process, or you haven't even started, our post
-                production services can put the finishing touches.
+               {service.des}
               </p>
             </div>
           ))}

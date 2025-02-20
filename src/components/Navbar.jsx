@@ -92,7 +92,7 @@ const Navbar = () => {
         initial={{ opacity: 0, display: 'none' }}
         animate={{ opacity: isOpen ? 1 : 0, display: isOpen ? 'block' : 'none' }}
         transition={{ duration: 0.3 }}
-        className='fixed w-full h-full text-white bg-black/50 top-16 left-0 z-50' style={{ display: isOpen ? 'block' : 'none' }}>
+        className='fixed w-full h-full text-white bg-black/50  left-0 z-50' style={{ display: isOpen ? 'block' : 'none' }}>
         <motion.div
           onClick={(e) => e.stopPropagation()}
           initial={{ x: '100%' }}
